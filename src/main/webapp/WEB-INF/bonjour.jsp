@@ -14,7 +14,8 @@
 		Votre pseudo :
 		<c:out value="${ pseudo }" />
 	</h2>
-	<c:forEach items="${ authors }" var='authorForEach' varStatus="statusAuthor">
+	<c:forEach items="${ authors }" var='authorForEach'
+		varStatus="statusAuthor">
 		<p>
 			<c:if test="${ statusAuthor.last }">
 				Et pour finir...
@@ -26,5 +27,23 @@
 		</p>
 	</c:forEach>
 	<p>${ author.active ? "Vous êtes très actif." : "Vous êtes inactif." }</p>
+
+	<!-- Tests sur les formulaires -->
+	<c:if test="${ !empty connectionForm.result }">
+		<p><c:out value="${ connectionForm.result }" /></p>
+	</c:if>
+
+	<form method="post" action="bonjour">
+		<div>
+			<label for="login">Login :</label> <input type="text"
+				id="login" name="login" />
+		</div>
+		<div>
+			<label for="pass">Password :</label> <input type="password"
+				id="pass" name="pass" />
+		</div>
+		<input type="submit" value="Envoyer" />
+	</form>
+
 </body>
 </html>
