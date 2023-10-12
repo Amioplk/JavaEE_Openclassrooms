@@ -5,6 +5,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.octest.beans.Author;
 import com.octest.forms.ConnectionForm;
@@ -28,12 +29,22 @@ public class Test extends HttpServlet {
 		this.setAuthors(request);
 
 		ConnectionForm form = new ConnectionForm();
-		form.checkCredentials(request);
+		boolean check_ok = form.checkCredentials(request);
 
+		if(check_ok) {
+			String login = request.getParameter("login");
+			String password = request.getParameter("password");
+			HttpSession session = request.getSession();
+			session.setAttribute("login", login);
+			session.setAttribute("password", password);
+		}
+			
 		request.setAttribute("connectionForm", form);
 
 		this.getServletContext().getRequestDispatcher("/WEB-INF/bonjour.jsp").forward(request, response);
 	}
+	
+	
 
 	private void setAuthors(HttpServletRequest request) {
 		Author author = new Author();

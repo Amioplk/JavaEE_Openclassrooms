@@ -16,7 +16,7 @@ public class Filing extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	public static final int TAILLE_TAMPON = 10240;
-    public static final String CHEMIN_FICHIERS = "C:\\Users\\Amioplk\\Documents\\Cours_Openclassrooms\\JEE\\files\\"; // A changer
+    public static final String CHEMIN_FICHIERS = "C:\\Users\\Amioplk\\Documents\\Cours_Openclassrooms\\JEE\\files\\";
 	    
 	
     public Filing() {

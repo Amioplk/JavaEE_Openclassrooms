@@ -30,20 +30,27 @@
 
 	<!-- Tests sur les formulaires -->
 	<c:if test="${ !empty connectionForm.result }">
-		<p><c:out value="${ connectionForm.result }" /></p>
+		<p>
+			<c:out value="${ connectionForm.result }" />
+		</p>
+	</c:if>
+	
+	<p>Mon login : <c:out value="${ sessionScope.login }" /></p>
+
+	<c:if test="${ empty sessionScope.login }">
+		<form method="post" action="bonjour">
+			<div>
+				<label for="login">Login :</label> 
+				<input type="text" id="login" name="login" />
+			</div>
+			<div>
+				<label for="pass">Password :</label> 
+				<input type="password" id="pass" name="pass" />
+			</div>
+			<input type="submit" value="Envoyer" />
+		</form>
 	</c:if>
 
-	<form method="post" action="bonjour">
-		<div>
-			<label for="login">Login :</label> <input type="text"
-				id="login" name="login" />
-		</div>
-		<div>
-			<label for="pass">Password :</label> <input type="password"
-				id="pass" name="pass" />
-		</div>
-		<input type="submit" value="Envoyer" />
-	</form>
 
 </body>
 </html>
