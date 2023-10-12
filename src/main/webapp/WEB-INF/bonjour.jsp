@@ -1,6 +1,3 @@
-<%@ page pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +8,6 @@
 <%@ include file="menu.jsp" %>
 	<p><c:out value="Helloo" /></p>
 	<p>Bonjour ${ author.surname } ${ author.name }</p>
-	<p>${ author.active ? "Vous Ãªtes trÃ¨s actif." : "Vous Ãªtes inactif." }</p>
+	<p>${ author.active ? "Vous êtes très actif." : "Vous êtes inactif." }</p>
 </body>
 </html>
