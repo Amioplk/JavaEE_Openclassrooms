@@ -14,7 +14,11 @@
 		Votre pseudo :
 		<c:out value="${ pseudo }" />
 	</h2>
-	<p>Bonjour ${ author.surname } ${ author.name }</p>
+	<p>
+		Bonjour
+		<c:out value="${ author.surname }" />
+		<c:out value="${ author.name }" />
+	</p>
 	<p>${ author.active ? "Vous êtes très actif." : "Vous êtes inactif." }</p>
 </body>
 </html>
