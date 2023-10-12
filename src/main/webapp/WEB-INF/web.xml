@@ -15,11 +15,27 @@
 		<description></description>
 		<display-name>Home</display-name>
 		<servlet-name>Home</servlet-name>
-		<servlet-class>com.octest.servlets.Accueil</servlet-class>
+		<servlet-class>com.octest.servlets.Home</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Home</servlet-name>
 		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>Filing</display-name>
+		<servlet-name>Filing</servlet-name>
+		<servlet-class>com.octest.servlets.Filing</servlet-class>
+		<multipart-config>
+			<location>C:\Users\Amioplk\Documents\Cours_Openclassrooms\JEE\tmp\</location>
+			<max-file-size>10000000</max-file-size>
+			<max-request-size>50000000</max-request-size>
+			<file-size-threshold>1000000</file-size-threshold>
+		</multipart-config>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Filing</servlet-name>
+		<url-pattern>/echange</url-pattern>
 	</servlet-mapping>
 
 	<jsp-config>
