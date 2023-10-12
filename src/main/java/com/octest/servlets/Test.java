@@ -25,9 +25,9 @@ public class Test extends HttpServlet {
 		author.setActive(true);
 		
 		Author author2 = new Author();
-		author.setName("Lambourg");
-		author.setSurname("Charlotte");
-		author.setActive(true);
+		author2.setName("Lambourg");
+		author2.setSurname("Charlotte");
+		author2.setActive(true);
 		
 		Author[] authors = {author, author2};
 		

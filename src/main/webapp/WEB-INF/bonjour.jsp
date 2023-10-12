@@ -14,11 +14,17 @@
 		Votre pseudo :
 		<c:out value="${ pseudo }" />
 	</h2>
-	<p>
-		Bonjour
-		<c:out value="${ author.surname }" />
-		<c:out value="${ author.name }" />
-	</p>
+	<c:forEach items="${ authors }" var='authorForEach' varStatus="statusAuthor">
+		<p>
+			<c:if test="${ statusAuthor.last }">
+				Et pour finir...
+			</c:if>
+			Bonjour
+			<c:out value="${ authorForEach.surname }" />
+			<c:out value="${ authorForEach.name }" />
+			!
+		</p>
+	</c:forEach>
 	<p>${ author.active ? "Vous êtes très actif." : "Vous êtes inactif." }</p>
 </body>
 </html>
