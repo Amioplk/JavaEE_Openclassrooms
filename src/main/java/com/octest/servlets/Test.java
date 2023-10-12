@@ -44,8 +44,8 @@ public class Test extends HttpServlet {
 		if(check_ok) {
 			String login = request.getParameter("login");
 			String password = request.getParameter("password");
-			HttpSession session = request.getSession();
-			session.setAttribute("login", login); // Obligé de déclarer la session dans chaque fonction de chaque Servlet où on veut utiliser la session ?
+			HttpSession session = request.getSession(true); // If already a session, retrive it
+			session.setAttribute("login", login);
 			session.setAttribute("password", password);
 		}
 		request.setAttribute("connectionForm", form);
@@ -53,7 +53,7 @@ public class Test extends HttpServlet {
 		// Save age cookie
 		String age = request.getParameter("age");
 		Cookie cookie = new Cookie("age", age);
-		cookie.setMaxAge(3600 * 3); // Lasts 3 hours
+		cookie.setMaxAge(3600 * 3); // Lasts 3 hours (defaut session scope)
 		response.addCookie(cookie);
 
 		this.getServletContext().getRequestDispatcher("/WEB-INF/bonjour.jsp").forward(request, response);
