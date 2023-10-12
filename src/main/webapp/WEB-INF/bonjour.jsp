@@ -27,6 +27,9 @@
 		</p>
 	</c:forEach>
 	<p>${ author.active ? "Vous êtes très actif." : "Vous êtes inactif." }</p>
+	<c:if test="${ !empty age }">
+		<p>Vous avez ${ age } ${ age <= 1 ? "an" : "ans" } !</p>
+	</c:if>
 
 	<!-- Tests sur les formulaires -->
 	<c:if test="${ !empty connectionForm.result }">
@@ -46,6 +49,10 @@
 			<div>
 				<label for="pass">Password :</label> 
 				<input type="password" id="pass" name="pass" />
+			</div>
+			<div>
+				<label for="age">Age :</label> 
+				<input type="number" id="age" name="age" min=0 max=100/>
 			</div>
 			<input type="submit" value="Envoyer" />
 		</form>
