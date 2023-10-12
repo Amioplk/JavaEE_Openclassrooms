@@ -23,7 +23,16 @@ public class Test extends HttpServlet {
 		author.setName("Worms");
 		author.setSurname("Amir");
 		author.setActive(true);
+		
+		Author author2 = new Author();
+		author.setName("Lambourg");
+		author.setSurname("Charlotte");
+		author.setActive(true);
+		
+		Author[] authors = {author, author2};
+		
 		request.setAttribute("author", author);
+		request.setAttribute("authors", authors);
 		this.getServletContext().getRequestDispatcher("/WEB-INF/bonjour.jsp").forward(request, response);
 	}
 

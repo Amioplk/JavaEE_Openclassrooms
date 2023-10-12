@@ -5,8 +5,15 @@
 <title>Test</title>
 </head>
 <body>
-<%@ include file="menu.jsp" %>
-	<p><c:out value="Helloo" /></p>
+	<%@ include file="menu.jsp"%>
+	<c:set var="pseudo" value="${ author.surname }77400" scope="page" />
+	<c:if test="${ !author.active }">
+		<c:set target="${ author }" property="name" value="Lambourg" />
+	</c:if>
+	<h2>
+		Votre pseudo :
+		<c:out value="${ pseudo }" />
+	</h2>
 	<p>Bonjour ${ author.surname } ${ author.name }</p>
 	<p>${ author.active ? "Vous êtes très actif." : "Vous êtes inactif." }</p>
 </body>
