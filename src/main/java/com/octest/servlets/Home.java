@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.octest.beans.Utilisateur;
+import com.octest.dao.DaoException;
 import com.octest.dao.DaoFactory;
 import com.octest.dao.UtilisateurDao;
 
@@ -27,19 +28,28 @@ public class Home extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("utilisateurs", utilisateurDao.lister());
+        try {
+			request.setAttribute("utilisateurs", utilisateurDao.lister());
+		} catch (Exception e) {
+			request.setAttribute("error", e.getMessage());
+		}
         this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp").forward(request, response);
     }
 
     public void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
-        Utilisateur utilisateur = new Utilisateur();
-        utilisateur.setNom(request.getParameter("nom"));
-        utilisateur.setPrenom(request.getParameter("prenom"));
-        
-        utilisateurDao.ajouter(utilisateur);
-        
-        request.setAttribute("utilisateurs", utilisateurDao.lister());
-        
+	     try {
+    		Utilisateur utilisateur = new Utilisateur();
+	        utilisateur.setNom(request.getParameter("nom"));
+	        utilisateur.setPrenom(request.getParameter("prenom"));
+	        
+	        utilisateurDao.ajouter(utilisateur);
+	        
+	        request.setAttribute("utilisateurs", utilisateurDao.lister());
+	     }
+	     catch (Exception e) {
+	    	 request.setAttribute("error", e.getMessage());
+	     }
+	        
         this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp").forward(request, response);
     }
     

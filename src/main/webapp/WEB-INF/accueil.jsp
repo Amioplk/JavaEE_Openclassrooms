@@ -7,6 +7,9 @@
 <title>Test</title>
 </head>
 <body>
+	<c:if test="${ !empty error }">
+		<p style="color:red"><c:out value="${ error }" /></p>
+	</c:if>
     <form method="post" action="accueil">
         <p>
             <label for="nom">Nom : </label>

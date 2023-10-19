@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.octest.beans.BeanException;
 import com.octest.beans.Utilisateur;
 
 public class Noms {
@@ -33,7 +34,12 @@ public class Noms {
                 String prenom = resultat.getString("prenom");
                 
                 Utilisateur utilisateur = new Utilisateur();
-                utilisateur.setNom(nom);
+                try {
+					utilisateur.setNom(nom);
+				} catch (BeanException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
                 utilisateur.setPrenom(prenom);
                 
                 utilisateurs.add(utilisateur);
