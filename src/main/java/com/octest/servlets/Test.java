@@ -44,7 +44,7 @@ public class Test extends HttpServlet {
 		if(check_ok) {
 			String login = request.getParameter("login");
 			String password = request.getParameter("password");
-			HttpSession session = request.getSession(true); // If already a session, retrive it
+			HttpSession session = request.getSession(true); // If already a session, retrieve it
 			session.setAttribute("login", login);
 			session.setAttribute("password", password);
 		}
