@@ -1,36 +1,33 @@
 package com.octest.servlets;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.octest.bdd.Noms;
 import com.octest.beans.Utilisateur;
+import com.octest.dao.DaoFactory;
+import com.octest.dao.UtilisateurDao;
 
 
 public class Home extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    
+    private UtilisateurDao utilisateurDao;
        
     public Home() {
         super();
         // TODO Auto-generated constructor stub
     }
+    
+    public void init() throws ServletException {
+    	DaoFactory daoFactory = DaoFactory.getInstance();
+    	this.utilisateurDao = daoFactory.getUtilisateurDao();
+    }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Noms tableNoms = new Noms();
-        request.setAttribute("utilisateurs", tableNoms.recupererUtilisateurs());
+        request.setAttribute("utilisateurs", utilisateurDao.lister());
         this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp").forward(request, response);
     }
 
@@ -39,10 +36,9 @@ public class Home extends HttpServlet {
         utilisateur.setNom(request.getParameter("nom"));
         utilisateur.setPrenom(request.getParameter("prenom"));
         
-        Noms tableNoms = new Noms();
-        tableNoms.ajouterUtilisateur(utilisateur);
+        utilisateurDao.ajouter(utilisateur);
         
-        request.setAttribute("utilisateurs", tableNoms.recupererUtilisateurs());
+        request.setAttribute("utilisateurs", utilisateurDao.lister());
         
         this.getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp").forward(request, response);
     }
